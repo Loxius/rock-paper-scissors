@@ -53,19 +53,9 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function playGame() {
-    for (i = 0; i<5;i++) {
-        computerSelection = getInt();
-        computerChoice = getComputerChoice();
-        playerSelection = prompt("Rock = 0\nPaper = 1\nScissors = 2");
-        playerChoice = getPlayerChoice();
-        playRound(playerSelection, computerSelection);
-    }
-
-    if (p > c) {
-        console.log("You've Won!");
-    } else if(c > p) {
-        console.log("You've loss!");
-    } else {
-        console.log("It was a draw!");
-    }
+    computerSelection = getInt();
+    computerChoice = getComputerChoice();
+    playerSelection = prompt("Rock = 0\nPaper = 1\nScissors = 2");
+    playerChoice = getPlayerChoice();
+    playRound(playerSelection, computerSelection);
 }
