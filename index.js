@@ -1,61 +1,44 @@
-let computerSelection;
-let computerChoice;
-let playerSelection;
-let playerChoice;
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+let player = document.querySelector("#player");
+let computer = document.querySelector("#computer");
+let p = 1;
+let c = 1;
 
-let c = 0;
-let p = 0;
+let playerSelection;
+let computerSelection;
 
 function getInt()   {
     return Math.floor(Math.random() * 3)
 }
 
-function getComputerChoice()    {
-    let choice;
-    if (computerSelection == 0)  {
-        choice = "Rock";
-    } else if (computerSelection == 1)   {
-        choice = "Paper";
-    } else{
-        choice = "Scissors";
-    }
-    return choice
-}
-
-function getPlayerChoice()    {
-    let choice;
-    if (playerSelection == 0)  {
-        choice = "Rock";
-    } else if (playerSelection == 1)   {
-        choice = "Paper";
-    } else{
-        choice = "Scissors";
-    }
-    return choice
-}
-
-function playRound(playerSelection, computerSelection) {
-    if(playerSelection == 0 && computerSelection == 1) {
-        return console.log("You lose! Computer chose " + computerChoice + " and you chose " + playerChoice + "\nP: " + p + " C: " + c++);
-    } else if(playerSelection == 0 && computerSelection == 2)  {
-        return console.log("You win! Computer chose " + computerChoice + " and you chose " + playerChoice + "\nP: " + p++ + " C: " + c);
-    } else if(playerSelection == 1 && computerSelection == 0)  {
-        return console.log("You win! Computer chose " + computerChoice + " and you chose " + playerChoice + "\nP: " + p++ + " C: " + c);
-    } else if(playerSelection == 1 && computerSelection == 2)  {
-        return console.log("You lose! Computer chose " + computerChoice + " and you chose " + playerChoice + "\nP: " + p + " C: " + c++);
-    } else if(playerSelection == 2 && computerSelection == 0)  {
-        return console.log("You lose! Computer chose " + computerChoice + " and you chose " + playerChoice + "\nP: " + p + " C: " + c++);
-    } else if(playerSelection == 2 && computerSelection == 1)  {
-        return console.log("You win! Computer chose " + computerChoice + " and you chose " + playerChoice + "\nP: " + p++ + " C: " + c);
-    } else {
-        return console.log("It's a draw! Computer chose " + computerChoice + " and you chose " + playerChoice + "\nP: " + p++ + " C: " + c++);
-    }
-}
-
-function playGame() {
+function playRound(playerSelection) {
     computerSelection = getInt();
-    computerChoice = getComputerChoice();
-    playerSelection = prompt("Rock = 0\nPaper = 1\nScissors = 2");
-    playerChoice = getPlayerChoice();
-    playRound(playerSelection, computerSelection);
+
+    if(playerSelection == 2 && computerSelection == 0 ||
+        playerSelection == 0  && computerSelection == 1 ||
+            playerSelection == 1 && computerSelection == 2) {
+        computer.textContent = "Computer Score: " + c++;
+
+    } else if(playerSelection == 0 && computerSelection == 2 ||
+                playerSelection == 1 && computerSelection == 0 ||
+                    playerSelection == 2 && computerSelection == 1) {
+        player.textContent = "Player Score: " + p++;
+
+    }
 }
+
+playRound();
+
+rock.addEventListener("click", function () {
+        playRound(0);
+    });
+
+paper.addEventListener("click", function () {
+        playRound(1);
+    });
+
+scissors.addEventListener("click", function () {
+        playRound(2);
+    });
